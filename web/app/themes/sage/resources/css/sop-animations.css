@@ -1,0 +1,26 @@
+.sop .process-number {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.sop .process-number.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sop .animate-on-scroll .process-content {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.5s ease 0.3s,
+    transform 0.5s ease 0.3s;
+  /* 0.3s delay */
+}
+
+.sop .animate-on-scroll.is-visible .process-content {
+  opacity: 1;
+  transform: translateY(0);
+}

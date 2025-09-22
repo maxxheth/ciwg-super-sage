@@ -1,0 +1,5 @@
+vendor/
+web/app/themes/sage/node_modules/
+web/app/themes/sage/dist/
+.git/
+*.log

@@ -1,0 +1,30 @@
+includes:
+  # If PHPStan dependencies are installed within the theme:
+  - vendor/szepeviktor/phpstan-wordpress/extension.neon
+# phpstan.neon
+parameters:
+	level: 5
+	paths:
+	  - app/
+	  - functions.php
+	  - index.php
+	excludePaths:
+	  - vendor/
+	  - node_modules/
+	  - public/
+	  - resources/views/
+	bootstrapFiles:
+	  - vendor/autoload.php
+	scanDirectories:
+	  - vendor/roots/acorn/src/
+	ignoreErrors:
+	  # WordPress globals and functions
+	  - '#^Variable \$[a-zA-Z0-9_]+ might not be defined\.#'
+	  - '#^Function [a-zA-Z0-9_]+ not found\.#'
+	  # Blade template helpers
+	  - '#Call to static method [a-zA-Z0-9_]+\(\) on an unknown class Roots\\\\view\.#'
+	  # Common WordPress hooks pattern
+	  - '#^Parameter \#1 \$tag of function add_filter expects string, array<int, string> given\.#'
+	  - '#^Parameter \#1 \$tag of function add_action expects string, array<int, string> given\.#'
+	  treatPhpDocTypesAsCertain: false
+	reportUnmatchedIgnoredErrors: false

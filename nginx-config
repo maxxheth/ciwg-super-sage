@@ -1,0 +1,100 @@
+# Virtual Host Configs
+server {
+    listen 80;
+    listen [::]:80;
+    # Replace with your domain name
+    server_name sandoval-site.test;
+
+    # Document root for the site
+    root /var/www/sandoval-site/web;
+    index index.php index.html index.htm;
+
+    # Add trailing slash to directories
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    # WordPress permalink structure
+#    location /wp-admin {
+        # Add trailing slash to /wp-admin requests
+#        rewrite ^/wp-admin$ $scheme://$host$uri/ permanent;
+#        try_files $uri $uri/ /index.php?$args;
+#    }
+
+    # Deny access to sensitive files
+    location ~ \.(env|log|git|gitignore|gitattributes|gitmodules|yml|yaml|lock|md|json)$ {
+        deny all;
+    }
+
+    # Deny access to hidden files
+    location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+
+    # Handle PHP files
+    location ~ \.php$ {
+        # Verify file exists before passing to FastCGI
+        try_files $uri =404;
+
+        # Include FastCGI parameters
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+        fastcgi_index index.php;
+    }
+
+    # Handle Sage theme assets
+    location ~* /app/themes/sage/public/build/ {
+        expires max;
+        log_not_found off;
+        access_log off;
+        add_header Cache-Control "public, max-age=31536000";
+    }
+
+    # Cache assets
+    location ~* \.(css|js|jpg|jpeg|png|gif|ico|svg|eot|ttf|woff|woff2)$ {
+        expires max;
+        log_not_found off;
+        access_log off;
+        add_header Cache-Control "public, max-age=31536000";
+    }
+
+    # Deny access to wp-config.php
+    location = /wp-config.php {
+        deny all;
+    }
+
+    # Deny access to wp-content/uploads/wpcf7_uploads/
+    location ~* /(?:uploads|files|wp-content)/.*\.php$ {
+        deny all;
+    }
+
+    # Disable direct access to plugin and theme PHP files
+    #location ~* /(?:wp-content|app|wp)/.*\.(?:php|phps|pht|phtml|php\d|php-s)$ {
+     #   deny all;
+    #}
+
+    # Deny access to install.php
+    #location = /wp/wp-admin/install.php {
+    #    deny all;
+    #}
+
+    # Enable WordPress SEO Sitemap
+    location = /sitemap.xml {
+        allow all;
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location = /sitemap_index.xml {
+        allow all;
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~ ^/sitemap_[^/]+\.xml {
+        allow all;
+        try_files $uri $uri/ /index.php?$args;
+    }
+}

@@ -1,0 +1,27 @@
+.service-layout {
+  width: 100%;
+  position: relative;
+}
+
+.service-layout__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Spacing options */
+.spacing-sm > .service-layout__container > * {
+  margin-bottom: 2rem;
+}
+
+.spacing-md > .service-layout__container > * {
+  margin-bottom: 4rem;
+}
+
+.spacing-lg > .service-layout__container > * {
+  margin-bottom: 6rem;
+}
+
+/* Layout specific styles */
+.layout-alternating .service-item:nth-child(even) {
+  flex-direction: row-reverse;
+}

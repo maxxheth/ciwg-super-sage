@@ -1,0 +1,33 @@
+.spin-clockwise {
+  animation: spin-clockwise 50s linear infinite;
+  animation-play-state: running;
+}
+
+.spin-counter-clockwise {
+  animation: spin-counter-clockwise 50s linear infinite;
+  animation-play-state: running;
+}
+
+@keyframes spin-clockwise {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-counter-clockwise {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.paused {
+  animation-play-state: paused !important;
+}

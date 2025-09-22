@@ -1,0 +1,35 @@
+.underline-curve-container {
+    pointer-events: none;
+}
+
+.underline-curve-container svg {
+    width: 100%;
+    height: 100%;
+}
+
+.underline-curve-container path {
+    transition: stroke-dashoffset 1s ease;
+}
+
+.underline-curve-container.animate path,
+.underline-curve-container.visible path {
+    stroke-dashoffset: 0;
+}
+
+/* For use with Intersection Observer to trigger on scroll */
+.underline-curve-container:not(.visible) path {
+    stroke-dashoffset: var(--dash-array, 307);
+}
+
+/** Set up media queries for different screen sizes */
+
+@media (max-width: 768px) {
+    .underline-curve-container {
+        display: none;
+    }
+}
+@media (min-width: 769px) {
+    .underline-curve-container {
+        display: block;
+    }
+}

@@ -1,0 +1,59 @@
+{
+    "name": "sage",
+    "private": true,
+    "engines": {
+        "bun": ">=1.2.3"
+    },
+    "type": "module",
+    "scripts": {
+        "dev": "NODE_ENV=development && vite",
+        "build": "NODE_ENV=production && vite build && ./scripts/create-symlinks.sh",
+        "translate": "bun run translate:pot && bun run translate:update",
+        "translate:pot": "wp i18n make-pot . ./resources/lang/sage.pot --include=\"theme.json,patterns,app,resources\"",
+        "translate:update": "for file in ./resources/lang/*.po; do wp i18n update-po ./resources/lang/sage.pot $file; done",
+        "translate:compile": "bun run translate:mo && bun run translate:js",
+        "translate:js": "wp i18n make-json ./resources/lang --pretty-print",
+        "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang",
+        "format-blade": "./blade-formatter.sh",
+        "check-blade": "./blade-checker.sh",
+        "format-ts": "bunx eslint --fix ./resources/js",
+        "lint-ts": "bunx eslint ./resources/js",
+        "format-prettier": "bunx prettier --write \"resources/**/*.{js,ts,css,json,md}\"",
+        "check-prettier": "bunx prettier --check \"resources/**/*.{js,ts,css,json,md}\"",
+        "format": "bun run format-blade && bun run format-ts && bun run format-prettier && bun run pint",
+        "lint": "bun run lint-ts && bun run check-prettier",
+        "pint": "./pint.sh",
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "tsc --noEmit --watch"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.23.0",
+        "@roots/vite-plugin": "^1.0.4",
+        "@stedi/prettier-plugin-jsonata": "^2.1.3",
+        "@tailwindcss/vite": "^4.0.17",
+        "blade-formatter": "^1.42.2",
+        "eslint": "^9.23.0",
+        "esprima": "^4.0.1",
+        "globals": "^16.0.0",
+        "laravel-vite-plugin": "^1.2.0",
+        "prettier": "3.5.3",
+        "prettier-plugin-blade": "^2.1.21",
+        "tailwindcss": "^4.0.17",
+        "typescript-eslint": "^8.28.0",
+        "vite": "^6.2.3"
+    },
+    "dependencies": {
+        "@types/node": "^22.13.14",
+        "@wordpress/dom-ready": "^4.21.0",
+        "accordion-js": "^3.4.0",
+        "animejs": "^4.0.1",
+        "eslint-config-prettier": "^10.1.1",
+        "eslint-plugin-prettier": "^5.2.5",
+        "photoswipe": "^5.4.4",
+        "stillat-blade-parser": "^2.0.1",
+        "sweetalert2": "^11.17.2",
+        "swiper": "^11.2.6",
+        "valibot": "^1.0.0",
+        "zx": "^8.4.1"
+    }
+}

@@ -1,0 +1,77 @@
+services:
+  wp_sandovallandscaping:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: advanced-wordpress:latest
+    deploy:
+      resources:
+        limits:
+          memory: 2G  # Increased for Composer/Node operations
+    container_name: wp_sandovallandscaping
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /var/opt/shared/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
+      - /var/opt/shared/crons:/crons:ro
+      - /var/opt/shared/.htaccess:/var/www/html/.htaccess
+      - ./robots.txt:/var/www/html/robots.txt:ro
+      # Mount the entire Bedrock project structure
+      - .:/var/www/html
+      # Exclude vendor and node_modules from host (use container versions)
+      - /var/www/html/vendor
+      - /var/www/html/web/app/themes/sage/node_modules
+      - ./log:/var/www/log
+    user: "33:33"
+    restart: always
+    working_dir: /var/www/html
+    environment:
+      - PAGER=more
+      - MEMORY_LIMIT=2G
+      - WORDPRESS_DB_HOST=mysql
+      - WORDPRESS_DB_USER=sandoval_local
+      - WORDPRESS_DB_PASSWORD=tcVjfpwxjKIVd32YNYn56SII!YCos!
+      - WORDPRESS_DB_NAME=sandoval_local
+      - WP_HOME=http://sandoval-local.test
+      - WP_SITEURL=http://sandoval-local.test/wp
+      - WP_DEBUG=true
+      - WP_CACHE=true
+      - WP_DEBUG_LOG=true
+      - WP_DEBUG_DISPLAY=false
+      - SCRIPT_DEBUG=true
+      # Acorn environment variables
+      - WP_ENV=development
+      - ACF_PRO_KEY=${ACF_PRO_KEY:-}
+    networks:
+      - cache
+      - web
+      - mysql
+    labels:
+      - "ci.groups=website,wordpress"
+      - "traefik.http.routers.wp_sandovallandscaping.middlewares=block-sql-files"
+      - "traefik.http.routers.wp_sandovallandscaping.rule=Host(`sandoval-local.test`) || Host(`www.sandoval-local.test`)"
+      - "traefik.http.routers.wp_sandovallandscaping.tls=true"
+      - "traefik.http.routers.wp_sandovallandscaping.tls.certresolver=lets-encrypt"
+      - "traefik.port=80"
+    command: >
+      sh -c "
+        # Install Composer dependencies
+        composer install --no-dev --optimize-autoloader &&
+        # Install and build Sage theme assets with Bun
+        cd web/app/themes/sage &&
+        bun install &&
+        bun run build &&
+        # Start the WordPress container
+        cd /var/www/html &&
+        exec docker-entrypoint.sh apache2-foreground
+      "
+
+networks:
+  cache:
+    name: cache
+    external: true
+  mysql:
+    name: mysql
+    external: true
+  web:
+    name: web
+    external: true

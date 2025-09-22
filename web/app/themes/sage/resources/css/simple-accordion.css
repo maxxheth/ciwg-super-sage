@@ -1,0 +1,42 @@
+.service-accordion__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: all 0.3s ease;
+  will-change: all;
+}
+
+.accordion-icon {
+  transition: all 0.3s ease;
+  will-change: all;
+}
+
+.service-accordion__header.is-active .accordion-icon {
+  transform: rotate(270deg);
+}
+
+.service-accordion__body {
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+  will-change: all;
+}
+
+.accordion-icon {
+  transition: transform 0.3s ease-in-out;
+  /* Remove the initial rotation */
+}
+
+/* .accordion__body {
+    transition: all 0.3s ease-out;
+}
+
+.accordion-icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+.accordion__header.is-active .accordion-icon {
+    transform: rotate(180deg);
+} */

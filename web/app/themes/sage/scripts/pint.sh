@@ -1,0 +1,1 @@
+/var/www/sandoval-site/pint.sh

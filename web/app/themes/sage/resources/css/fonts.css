@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'figtree';
+  src: url('/app/themes/sage/resources/fonts/Figtree/Figtree-VariableFont_wght.woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* @font-face {
+	font-family: "lora";
+	src: url("/app/themes/sage/resources/fonts/Lora/Lora-VariableFont_wght.woff2");
+	font-weight: normal;
+	font-style: normal;
+} */
+
+@font-face {
+  font-family: 'dm-serif';
+  src: url('/app/themes/sage/resources/fonts/DMSerifText/DMSerifText-Regular.woff2');
+  font-weight: normal;
+  font-style: normal;
+}

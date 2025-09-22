@@ -1,0 +1,53 @@
+@layer utilities {
+  /* Parallax image wrapper positioning - nth-child variants */
+  .parallax-image-wrapper:nth-child(1) {
+    @apply w-[60%] h-[60%] top-[10%] left-[10%] z-20;
+  }
+
+  .parallax-image-wrapper:nth-child(2) {
+    @apply w-[45%] h-[50%] top-[25%] right-[10%] z-10;
+  }
+
+  .parallax-image-wrapper:nth-child(3) {
+    @apply w-[35%] h-[40%] bottom-[10%] left-[25%] z-30;
+  }
+
+  /* Alternate layout image positions */
+  .layout-alternating .service-item:nth-child(even) .parallax-image-wrapper:nth-child(1) {
+    @apply left-auto right-[10%];
+  }
+
+  .layout-alternating .service-item:nth-child(even) .parallax-image-wrapper:nth-child(2) {
+    @apply right-auto left-[10%];
+  }
+
+  .layout-alternating .service-item:nth-child(even) .parallax-image-wrapper:nth-child(3) {
+    @apply left-auto right-[25%];
+  }
+
+  /* Responsive adjustments for mobile */
+  @media (max-width: 767px) {
+    .parallax-image-wrapper:nth-child(1) {
+      @apply w-[70%] h-[50%] top-[5%] left-[15%];
+    }
+
+    .parallax-image-wrapper:nth-child(2) {
+      @apply w-[50%] h-[40%] top-[30%] right-[5%];
+    }
+
+    .parallax-image-wrapper:nth-child(3) {
+      @apply w-[40%] h-[35%] bottom-[5%] left-[15%];
+    }
+
+    .layout-alternating .service-item:nth-child(even) .parallax-image-wrapper:nth-child(1),
+    .layout-alternating .service-item:nth-child(even) .parallax-image-wrapper:nth-child(2),
+    .layout-alternating .service-item:nth-child(even) .parallax-image-wrapper:nth-child(3) {
+      @apply left-auto right-[15%];
+    }
+  }
+
+  /* Accordion styles */
+  .service-accordion__header.is-active .accordion-icon {
+    @apply rotate-180;
+  }
+}

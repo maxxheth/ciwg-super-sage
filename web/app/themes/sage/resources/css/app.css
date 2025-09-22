@@ -1,0 +1,290 @@
+@import 'tailwindcss';
+@import './mega-menu.css';
+@import './mobile-mega-menu.css';
+@import './animations.css';
+@import './hamburger.css';
+@import './sop-animations.css';
+@import './spinning-logo.css';
+@import './logo-animations.css';
+@import './fonts.css';
+@import './simple-accordion.css';
+@import './service-item.css';
+@import './ui.css';
+@import './swiper-bundle.css';
+@import './custom-swiper-styles.css';
+@import './project-gallery-slider.css';
+@import './photoswipe.css';
+@import './service-content.css';
+@import './underline-curve-container.css';
+@import './article-content.css';
+@source "../views/";
+@source "../../app/";
+
+@theme {
+  --font-figtree: 'figtree', sans-serif;
+  --font-lora: 'lora', serif;
+  --font-dm-serif: 'dm-serif', serif;
+  /* Rich Forest Green */
+  --color-primary: hsl(115, 40%, 35%);
+  /* Vibrant Leaf Green */
+  --color-primary-light: hsl(115, 50%, 45%);
+  /* Warm Earthy Brown */
+  --color-secondary: hsl(35, 60%, 55%);
+  /* Sunlit Yellow */
+  --color-accent: hsl(45, 100%, 60%);
+  /* Soft Beige */
+  --color-background: hsl(30, 20%, 95%);
+  /* Deep Charcoal */
+  --color-text: hsl(0, 0%, 20%);
+  /* Soft Green Mist */
+  --color-muted: hsl(115, 30%, 85%);
+  /* Subtle Green Border */
+  --color-border: hsl(115, 20%, 60%);
+  /* Success and Danger Colors */
+  --color-success: hsl(120, 70%, 50%);
+  --color-danger: hsl(0, 70%, 50%);
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+/* .hero-button.white-to-green {
+  fill: "#ffffff";
+}
+
+.hero-button.white-to-green:hover {
+  fill: "#016630";
+} */
+
+.hero-button {
+  & svg {
+    transition: fill 0.3s ease;
+  }
+
+  &.white-to-green {
+    background-color: #ffffff;
+    &:hover {
+      background-color: var(--color-primary);
+      color: #ffffff;
+    }
+    & svg {
+      fill: var(--color-primary);
+    }
+    
+    &:hover svg {
+      fill: #ffffff;
+    }
+
+    & span,a {
+      color: var(--color-primary);
+    }
+
+    &:hover span,a {
+      color: #ffffff;
+    }
+  }
+  
+  &.white-to-light-green {
+    background-color: #ffffff;
+    &:hover {
+      background-color: var(--color-primary-light);
+      color: #ffffff;
+    }
+    & svg {
+      fill: var(--color-primary);
+    }
+    
+    &:hover svg {
+      fill: #ffffff;
+    }
+
+    & span,a {
+      color: var(--color-primary);
+    }
+
+    &:hover span,a {
+      color: #ffffff;
+    }
+  }
+
+
+  &.just-white {
+    & svg {
+      fill: #ffffff;
+    }
+  }
+
+  &.green-to-white {
+    & svg {
+      fill: var(--color-primary);
+    }
+
+    & span,a {
+      color: #ffffff;
+    }
+    
+    &:hover svg {
+      fill: #ffffff;
+    }
+
+    &:hover span,a {
+      color: var(--color-primary);
+    }
+  }
+
+  &.light-green-to-white {
+    background-color: var(--color-primary-light);
+    &:hover {
+      background-color: #ffffff;
+      color: (--color-primary);
+    }
+    & svg {
+      fill: #ffffff;
+    }
+    
+    &:hover svg {
+      fill: var(--color-primary);
+    }
+
+    & span,a {
+      color: #ffffff;
+    }
+    &:hover span,a {
+      color: var(--color-primary);
+    }
+  }
+
+  &.just-green {
+    & svg {
+      fill: #016630;
+    }
+  }
+
+  &.just-light-green {
+    & svg {
+      fill: hsl(115, 50%, 45%);
+    }
+  }
+}
+
+/* &.green-to-white {
+    fill: "#ffffff";
+  }
+
+  &:hover.green-to-white {
+    fill: "#016630";
+  }
+} */
+
+#testimonial-cards>div {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+#testimonial-buttons [data-progress] {
+  will-change: width;
+}
+
+body main {
+  overflow-x: hidden;
+}
+
+/* Pure CSS Accordion - No JavaScript Required */
+
+/* Hide the input */
+.service-accordion .accordion-input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+/* Basic styling for closed state */
+.service-accordion .service-accordion__body {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+/* Styles for open state when input is checked */
+.service-accordion .accordion-input:checked~.service-accordion__body {
+  max-height: 1000px;
+  /* Adjust as needed */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Rotate the icon when open */
+.service-accordion .accordion-input:checked+.service-accordion__header .accordion-icon {
+  transform: rotate(90deg);
+}
+
+/* Header styling for active state */
+.service-accordion .accordion-input:checked+.service-accordion__header {
+  border-bottom-color: transparent;
+  font-weight: 600;
+  color: var(--color-primary);
+  /* background-color: rgba(0, 0, 0, 0.03); */
+}
+
+/* Ensure smooth transitions */
+.service-accordion__header {
+  transition: all 0.6s ease-out;
+}
+
+/* Override any inline styles that might interfere */
+.service-accordion .service-accordion__body {
+  display: block !important;
+  height: auto !important;
+}
+
+/* Custom PhotoSwipe Styles */
+
+.pswp__custom-caption {
+  background: rgba(75, 150, 75, 0.75);
+  font-size: 16px;
+  color: #fff;
+  width: calc(100% - 32px);
+  max-width: 400px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+}
+
+.pswp__custom-caption a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.hidden-caption-content {
+  display: none;
+}
+
+.feature-icon {
+  padding: 0.25rem;
+  & path {
+    width: 60%;
+    fill: var(--color-primary);
+  }
+}
+
+.pswp__custom-caption {
+  display: none;
+}
+
+.marquee {
+  animation-name: marquee-scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

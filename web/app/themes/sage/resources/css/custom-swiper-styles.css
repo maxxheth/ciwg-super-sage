@@ -1,0 +1,33 @@
+/* Add this to your site's custom CSS */
+
+/* Main slider height adjustment */
+#service-gallery .project-gallery-swiper-main {
+	height: 600px;
+	/* Adjust to your preferred height */
+}
+
+/* Thumbnail slider height adjustment */
+#service-gallery .project-gallery-swiper-thumbs {
+	height: 100px;
+	/* Adjust based on your needs */
+	margin-top: 10px;
+}
+
+/* Ensure images maintain aspect ratio while filling the slide */
+#service-gallery .swiper-slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	/* Makes images cover the slide area */
+}
+
+/* Optional: add responsive adjustments */
+@media (max-width: 768px) {
+	#service-gallery .project-gallery-swiper-main {
+		height: 350px;
+	}
+
+	#service-gallery .project-gallery-swiper-thumbs {
+		height: 80px;
+	}
+}

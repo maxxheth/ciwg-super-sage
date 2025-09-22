@@ -1,0 +1,173 @@
+/* Mega Menu Styles */
+
+.mega-menu-container {
+  position: absolute;
+  top: 5.5rem;
+  left: 0;
+  right: 0;
+  z-index: 40;
+}
+
+.mega-menu {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+
+  &.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation classes */
+.animate-fade-in-down {
+  animation: fadeInDown 0.2s ease forwards;
+}
+
+.animate-fade-out-up {
+  animation: fadeOutUp 0.2s ease forwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Map marker animation */
+.map-marker {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Scroll animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+
+  &.animated {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered animations */
+.stagger-container .stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.stagger-container.animated {
+  & .stagger-item {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.1s ease-in-out;
+
+    &:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+
+    &:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    &:nth-child(4) {
+      transition-delay: 0.4s;
+    }
+
+    &:nth-child(5) {
+      transition-delay: 0.5s;
+    }
+
+    &:nth-child(6) {
+      transition-delay: 0.6s;
+    }
+
+    &:nth-child(7) {
+      transition-delay: 0.7s;
+    }
+
+    &:nth-child(8) {
+      transition-delay: 0.8s;
+    }
+
+    &:nth-child(9) {
+      transition-delay: 0.9s;
+    }
+
+    &:nth-child(10) {
+      transition-delay: 1s;
+    }
+  }
+}
+
+/* Counter animations */
+.counter-value {
+  display: inline-block;
+}
+
+/* Hover effects */
+.menu-link {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #16a34a;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after,
+  &.active::after {
+    width: 100%;
+  }
+}

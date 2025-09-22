@@ -1,0 +1,340 @@
+/* Mobile Navigation & Mega Menu Styles */
+
+/* Mobile navigation container */
+/* .mobile-nav-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	z-index: 90;
+	display: none;
+	padding-top: 80px;
+	overflow-y: auto;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+} */
+
+/* Show mobile nav when menu is open */
+/* body.mobile-menu-open .mobile-nav-container {
+	display: block;
+} */
+
+/* Hamburger menu styling for mobile */
+@media (max-width: 1023px) {
+  .tham {
+    display: block;
+    z-index: 100;
+    position: relative;
+  }
+}
+
+/* Mobile mega menu overlay */
+.mobile-mega-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-mega-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile mega menu styling */
+.mobile-mega-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 85%;
+  max-width: 400px;
+  height: 100vh;
+  background-color: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 100;
+  transition: right 0.3s ease;
+  padding: 1rem;
+  display: block;
+  /* This ensures the element stays rendered for animations */
+  visibility: hidden;
+  /* Hide it initially */
+}
+
+.mobile-mega-menu.active {
+  /* right: 0; */
+  visibility: visible;
+}
+
+.mobile-mega-menu.closing {
+  visibility: visible;
+}
+
+/* Mobile header */
+.mobile-mega-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.mobile-mega-menu-close {
+  /* color: #4a5568; */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s;
+}
+
+/* .mobile-mega-menu-close:hover {
+	color: #2d3748;
+} */
+
+/* Mobile content */
+.mobile-mega-menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Mobile section toggle */
+.mobile-section-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+.mobile-section-toggle-icon {
+  transition: transform 0.3s ease;
+}
+
+.mobile-section-toggle.open .mobile-section-toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* Mobile section content */
+.mobile-section-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-section-content.open {
+  max-height: 1000px;
+  /* Large enough to show all content */
+}
+
+/* Animations for mobile mega menu */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.mobile-mega-menu.active {
+  right: 0;
+  animation: slideInRight 0.3s forwards;
+}
+
+.mobile-mega-menu.closing {
+  animation: slideOutRight 0.3s forwards;
+}
+
+/* .mobile-mega-menu:not(.active) {
+  animation: slideOutRight 0.3s forwards;
+} */
+
+/* Responsive adjustments */
+@media (min-width: 1024px) {
+  .mobile-mega-menu,
+  .mobile-mega-menu-overlay,
+  .mobile-nav-container {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .mobile-mega-menu {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mobile-mega-menu-content {
+    gap: 1rem;
+  }
+}
+
+/* Styling for links within mobile menu */
+.mobile-mega-menu a {
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mobile-mega-menu a:hover {
+  color: var(--color-primary, #38a169);
+}
+
+/* Additional styling for section lists */
+.mobile-section-content ul {
+  padding-left: 0.5rem;
+}
+
+.mobile-section-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Add fade in animation for content */
+.mobile-section-content.open {
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile navigation container - updated with transition properties */
+.mobile-nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 99;
+  /* padding-top: 70px; */
+  overflow-y: auto;
+  /* Replace display: none with these properties for animation */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Show mobile nav when menu is open - updated */
+body.mobile-menu-open .mobile-nav-container {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Make sure hamburger is visible on mobile */
+@media (max-width: 1023px) {
+  .tham {
+    display: block;
+    z-index: 100;
+  }
+}
+
+/* Keep mega menus hidden until activated */
+.mobile-mega-menu {
+  display: none;
+}
+
+.mobile-mega-menu.active {
+  display: block;
+}
+
+/* Section toggles in mega menu */
+.mobile-section-toggle {
+  cursor: pointer;
+}
+
+.mobile-section-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-section-content.open {
+  max-height: 500px;
+}
+
+/* Overlay styling */
+.mobile-mega-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 95;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.mobile-mega-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-container li {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+body.mobile-menu-open .mobile-nav-container li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delay for each menu item */
+body.mobile-menu-open .mobile-nav-container li:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+body.mobile-menu-open .mobile-nav-container li:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+body.mobile-menu-open .mobile-nav-container li:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+body.mobile-menu-open .mobile-nav-container li:nth-child(4) {
+  transition-delay: 0.25s;
+}
+
+body.mobile-menu-open .mobile-nav-container li:nth-child(5) {
+  transition-delay: 0.3s;
+}
