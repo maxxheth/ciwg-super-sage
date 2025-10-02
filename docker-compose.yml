@@ -1,5 +1,5 @@
 services:
-  wp_sandovallandscaping:
+  wp_ciwg_super_sage:
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,7 +8,7 @@ services:
       resources:
         limits:
           memory: 2G  # Increased for Composer/Node operations
-    container_name: wp_sandovallandscaping
+    container_name: wp_ciwg_super_sage
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - /var/opt/shared/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
@@ -31,8 +31,8 @@ services:
       - WORDPRESS_DB_USER=sandoval_local
       - WORDPRESS_DB_PASSWORD=tcVjfpwxjKIVd32YNYn56SII!YCos!
       - WORDPRESS_DB_NAME=sandoval_local
-      - WP_HOME=http://sandoval-local.test
-      - WP_SITEURL=http://sandoval-local.test/wp
+      - WP_HOME=http://ciwg-super-sage.test
+      - WP_SITEURL=http://ciwg-super-sage.test/wp
       - WP_DEBUG=true
       - WP_CACHE=true
       - WP_DEBUG_LOG=true
@@ -47,10 +47,10 @@ services:
       - mysql
     labels:
       - "ci.groups=website,wordpress"
-      - "traefik.http.routers.wp_sandovallandscaping.middlewares=block-sql-files"
-      - "traefik.http.routers.wp_sandovallandscaping.rule=Host(`sandoval-local.test`) || Host(`www.sandoval-local.test`)"
-      - "traefik.http.routers.wp_sandovallandscaping.tls=true"
-      - "traefik.http.routers.wp_sandovallandscaping.tls.certresolver=lets-encrypt"
+      - "traefik.http.routers.wp_ciwg_super_sage.middlewares=block-sql-files"
+      - "traefik.http.routers.wp_ciwg_super_sage.rule=Host(`ciwg-super-sage.test`) || Host(`www.ciwg-super-sage.test`)"
+      - "traefik.http.routers.wp_ciwg_super_sage.tls=true"
+      - "traefik.http.routers.wp_ciwg_super_sage.tls.certresolver=lets-encrypt"
       - "traefik.port=80"
     command: >
       sh -c "
