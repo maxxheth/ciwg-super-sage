@@ -1,0 +1,31 @@
+services:
+  mysql:
+    image: mysql:lts
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --mysql-native-password=ON
+    container_name: mysql
+    cap_add:
+      - SYS_NICE
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./my.cnf:/etc/my.cnf
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=wertWERT45
+      - MYSQL_PASSWORD=whyQUIT!!11
+      - MYSQL_DATABASE=edfx
+      - MYSQL_USER=edfx
+    networks:
+      - mysql
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+#      - "traefik.tcp.routers.mysql.rule=HostSNI(`*`)"
+#      - "traefik.tcp.routers.mysql.entrypoints=mysql"
+#      - "traefik.tcp.services.mysql.loadbalancer.server.port=3306"
+
+networks:
+  mysql:
+    name: mysql
+    driver: bridge

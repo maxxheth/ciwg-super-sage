@@ -1,0 +1,26 @@
+networks:
+  cache:
+    name: cache
+    driver: bridge
+
+services:
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: always
+    command: ["redis-server", "--appendonly", "yes", "--bind", "0.0.0.0", "--protected-mode", "no"]
+    networks:
+      - "cache"
+    volumes:
+      - "./redis_data:/data"
+    labels:
+      - "traefik.enabled=false"
+
+#  memcached:
+#    image: memcached:alpine
+#    container_name: memcached
+#    networks:
+#      - wordpress_network
+#    command: memcached -m 128
+#
+
