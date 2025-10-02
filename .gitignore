@@ -13,6 +13,9 @@ web/app/themes/sage/vendor
 web/app/themes/sade/node_modules
 web/app/themes/sage/images
 node_modules
+mysql/data
+cache/redis_data
+wordpress-manager/log
 
 # WordPress
 web/wp
