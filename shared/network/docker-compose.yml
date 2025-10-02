@@ -1,0 +1,14 @@
+version: "3.8"
+
+networks:
+  cache:
+    name: cache
+    driver: bridge
+
+  mysql:
+    name: mysql
+    driver: bridge
+
+  web:
+    name: web
+    driver: bridge
